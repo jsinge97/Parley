@@ -2,62 +2,63 @@
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
 <head>
 
-	<!-- Basic Page Needs
+<!-- Basic Page Needs
   ================================================== -->
-	<meta charset="utf-8">
-	<title>MUNSA Room Manager</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
+<meta charset="utf-8">
+<title>MUNSA Room Manager</title>
+<meta name="description" content="">
+<meta name="author" content="Javier Maldonado">
 
-	<!-- Mobile Specific Metas
+<!-- Mobile Specific Metas
   ================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<!-- CSS
+<!-- CSS
   ================================================== -->
-	<link rel="stylesheet" href="stylesheets/base.css">
-	<link rel="stylesheet" href="stylesheets/skeleton.css">
-	<link rel="stylesheet" href="stylesheets/layout.css">
-
-	<!--[if lt IE 9]>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/skeleton.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/scrofulous.css">
+<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+
 </head>
 <body>
 
-
-
-	<!-- Primary Page Layout
+<!-- Primary Page Layout
 	================================================== -->
 
-	<!-- Delete everything in this .container and get started on your own site! -->
-
-	<div class="container">
-		<div class="sixteen columns">
-			<h1>Scrofulous Watcher</h1>
-			<h3>MUNSA XVIII</h3>
-			<h5>Version 0.1 alpha</h5>
-			<hr />
-		</div>
-		<div class="one-third column">
-			<h3>Speaker's List</h3>
-			<p>Skeleton is a small collection of well-organized CSS files that can help you rapidly develop sites that look beautiful at any size, be it a 17" laptop screen or an iPhone. It's based on a responsive grid, but also provides very basic CSS for typography, buttons, forms and media queries. Go ahead, resize this super basic page to see the grid in action.</p>
-			<ul>
-				<li><strong>A Responsive Grid Down To Mobile</strong>: Elegant scaling from a browser to tablets to mobile.</li>
-				<li><strong>Fast to Start</strong>: It's a tool for rapid development with best practices</li>
-				<li><strong>Style Agnostic</strong>: It provides the most basic, beautiful styles, but is meant to be overwritten.</li>
-			</ul>
-		</div>
-		<div class="two-thirds column">
-			<button id=time class="full-width button">15:39</button>
-		</div>
-    	</div><!-- container -->
-
-
-<!-- End Document
-================================================== -->
+<div class="container">
+  <div class="sixteen columns">
+    <h1>Scrofulous Watcher</h1>
+    <h3>MUNSA XVIII</h3>
+    <h5>Version 0.1 alpha</h5>
+    <hr />
+  </div>
+  <div class="one-third column">
+    <h3>Speaker's List</h3>
+    <div id="speakers-list">
+      <ul class="list">
+      </ul>
+      <hr />
+    </div>
+    <input id="namebox" class"typeahead" type="text" placeholder="Country Name" />
+    <button  id="add" onClick="sendName()">Add</button>
+  </div>
+  <div class="two-thirds column">
+    <button id="time" class="full-width button">15:39</button>
+  </div>
+</div>
+<!-- container --> 
+<script src="js/jquery-2.0.2.min.js"></script> 
+<script src="js/list.min.js"></script> 
+<script src="js/typeahead.min.js"></script> 
+<script src="js/speakers.js"></script>
 </body>
 </html>

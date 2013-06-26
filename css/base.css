@@ -101,7 +101,9 @@
 
 /* #Lists
 ================================================== */
-	ul, ol { margin-bottom: 20px; }
+	ul, ol {
+	margin-bottom: 0px;
+}
 	ul { list-style: none outside; }
 	ol { list-style: decimal; }
 	ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }
@@ -265,5 +267,3 @@
 	.remove-bottom { margin-bottom: 0 !important; }
 	.half-bottom { margin-bottom: 10px !important; }
 	.add-bottom { margin-bottom: 20px !important; }
-
-
