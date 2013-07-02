@@ -1,38 +1,21 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="en">
-<!--<![endif]-->
 <head>
 
-<!-- Basic Page Needs
-  ================================================== -->
 <meta charset="utf-8">
 <title>MUNSA Room Manager</title>
 <meta name="description" content="">
 <meta name="author" content="Javier Maldonado">
 
-<!-- Mobile Specific Metas
-  ================================================== -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<!-- CSS
-  ================================================== -->
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/skeleton.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/scrofulous.css">
-<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
 
 </head>
 <body>
-
-<!-- Primary Page Layout
-	================================================== -->
 
 <div class="container">
   <div class="sixteen columns">
@@ -48,11 +31,11 @@
       </ul>
       <hr />
     </div>
-    <input id="namebox" class"typeahead" type="text" placeholder="Country Name" />
+    <input id="namebox" class"typeahead" type="text" onSubmit="sendName()"  placeholder="Country Name" />
     <button  id="add" onClick="sendName()">Add</button>
   </div>
   <div class="two-thirds column">
-    <button id="time" class="full-width button">15:39</button>
+    <button id="time" class="full-width button" onClick="startTimer()">0:00:30</button>
   </div>
 </div>
 <!-- container --> 
