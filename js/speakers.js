@@ -21,14 +21,38 @@ document.getElementById("namebox").addEventListener("keydown", function(e) {
 
 function startTimer() {
     var timer = document.getElementById("time");
-    while(timer.textContent != 0:00:00)
+    var content = timer.innerHTML;
+    var seconds = toSecs(content)
+    do
     {
-        setTimeout(1000);
-        var arr = timer.textContent.split(":");
-        window.alert(timer.textContent);
-        timer.textContent = "0:00:00";
+        setTimeout(decrement(seconds),1000);
+        seconds--;
     }
+    while(seconds != -1)
+    window.alert("Done!");
 }
+
+function decrement(secs){
+    var timer = document.getElementById("time");
+    timer.innerHTML = fromSecs(secs);
+}
+
+function toSecs(big){
+    var arr=big.split(":");
+    var hours = arr[0];
+    var mins = arr[1];
+    var secs = arr[2];
+    return (hours*60*60)+(mins*60)+secs;
+}
+
+function fromSecs(bigger){
+    var minsecs = bigger%3600;
+    var hours = (bigger-minsecs)/3600;
+    var secs = minsecs%60;
+    var mins = (minsecs-secs)/60
+    return hours+":"+mins+":"+secs;
+}
+
 //JQuery Stuff
 $(document).ready(function () {
 	    $('input').typeahead({
