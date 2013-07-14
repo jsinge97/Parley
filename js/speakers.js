@@ -5,7 +5,7 @@ document.getElementById("namebox").addEventListener("keydown", function(e) {
     }, false);
 
 	var options = {
-	    item: '<li><hr class="separator" /><h4 class="name"></h4></li>'
+        item: '<li><hr class="separator" /><h4 class="name"></h4></li>'
 	};
 
 	var values = [{name:'Clear this'}];
@@ -19,38 +19,58 @@ document.getElementById("namebox").addEventListener("keydown", function(e) {
 		textbox.value='';
 	}
 
+var timerStarted = false;
+
 function startTimer() {
-    var timer = document.getElementById("time");
-    var content = timer.innerHTML;
-    var seconds = toSecs(content)
-    do
-    {
-        setTimeout(decrement(seconds),1000);
-        seconds--;
+    window.timer = document.getElementById("time");
+    window.content = timer.innerHTML;
+    window.seconds = toSecs(content)+1;
+
+    console.log(toSecs(content));
+    console.log(toSecs(content)+1);
+    console.log('starting timout');
+
+    if(!timerStarted){
+        var why=setTimeout(recurseTime(),1000);
+        timerStarted=true;
     }
-    while(seconds != -1)
+
     window.alert("Done!");
 }
 
-function decrement(secs){
-    var timer = document.getElementById("time");
-    timer.innerHTML = fromSecs(secs);
+function recurseTime() {
+    window.seconds=seconds-1;
+    window.timer.innerHTML=fromSecs(seconds);
+    console.log(seconds);
+    console.log(fromSecs(seconds));
+    if(seconds!=0)
+        var why =setTimeout(function(){recurseTime()},1000);
 }
+
 
 function toSecs(big){
     var arr=big.split(":");
     var hours = arr[0];
     var mins = arr[1];
     var secs = arr[2];
-    return (hours*60*60)+(mins*60)+secs;
+    return parseInt((hours*60*60)+(mins*60)+secs);
 }
 
 function fromSecs(bigger){
     var minsecs = bigger%3600;
-    var hours = (bigger-minsecs)/3600;
-    var secs = minsecs%60;
-    var mins = (minsecs-secs)/60
+    var hours = checkTime((bigger-minsecs)/3600);
+    var secs = checkTime(minsecs%60);
+    var mins = checkTime((minsecs-secs)/60);
     return hours+":"+mins+":"+secs;
+}
+
+function checkTime(i)
+{
+    if (i<10)
+          {
+                i="0" + i;
+                  }
+    return i;
 }
 
 //JQuery Stuff
