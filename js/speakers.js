@@ -1,8 +1,4 @@
-document.getElementById("namebox").addEventListener("keydown", function(e) {
-    if (!e) { var e = window.event; }
-    // Enter is pressed
-    if (e.keyCode == 13) { addSpeaker(); }
-}, false);
+var timer = document.getElementById("time");
 
 var options = {
     item: '<li><hr class="separator" /><h4 class="name"></h4><p class="id"></p></li>'
@@ -12,10 +8,10 @@ var values = [{id:0,name:'Oh God how did this get here'},
               {id:1,name:'I am not good with Internet'}];
 
 var speakersList = new List('speakers-list', options, values);
-
 var timerStarted = false;
-
-var id = 1;
+var currentID = 1;
+var defaultTime=30;
+var remainingSeconds;
 
 function addSpeaker() {
     var textbox = document.getElementById("namebox");
@@ -27,6 +23,8 @@ function addSpeaker() {
 
 function removeNextSpeaker() {
     //list shouldn't get big enough that this becomes a problem
+    //TODO make this into final MAX_COUNTRIES for readability / NK's expulsion
+    //from U.N.
     var lowest=200;
     var items=speakersList.visibleItems;
     for(x in items)
@@ -36,44 +34,64 @@ function removeNextSpeaker() {
 }
 
 function nextId() {
-    id = id + 1;
-    return id;
+    currentID = currentID + 1;
+    return currentID;
 }
 
-function startTimer() {
-    window.timer = document.getElementById("time");
-    window.content = timer.innerHTML;
-    window.seconds = toSecs(content);
-
-    console.log(toSecs(content));
-    console.log(toSecs(content)+1);
-    console.log('starting timeout');
-
-    if(!timerStarted){
-        var why=setTimeout(recurseTime(),1000);
-        timerStarted=true;
+function setTimer() {
+    if(!timerStarted) {
+        var textbox = document.getElementById("timebox");
+        defaultTime=textbox.value;
+        timer.innerHTML=formatSeconds(defaultTime);
+    }
+    else {
+        stopTimer();
+        var textbox = document.getElementById("timebox");
+        defaultTime=textbox.value;
+        timer.innerHTML=formatSeconds(defaultTime);
     }
 }
 
-function recurseTime() {
-    window.seconds=window.seconds-1;
-    window.timer.innerHTML=fromSecs(window.seconds);
-    if(seconds===0)
-        removeNextSpeaker();
+
+function startTimer() {
+    console.log('starting timeout');
+
+    if(!timerStarted){
+        remainingSeconds=defaultTime;
+        var why=setTimeout(recurseTime(),1000);
+        timerStarted=true;
+    }
     else
-        var why =setTimeout(function(){recurseTime()},1000);
+        stopTimer();
 }
 
+function stopTimer() {
+    remainingSeconds=1;
+}
 
-function toSecs(big){
-    var arr=big.split(":");
+function recurseTime() {
+    remainingSeconds=remainingSeconds-1;
+    timer.innerHTML=formatSeconds(remainingSeconds);
+    if(remainingSeconds===0) {
+        timerStarted=false;
+        removeNextSpeaker();
+        setTimer(defaultTime);
+    }
+    else
+        var foo = setTimeout(function(){recurseTime()},1000);
+}
+
+//format is hh:mm:ss
+function textToSeconds(textString){
+    var arr=textString.split(":");
     var hours = arr[0];
     var mins = arr[1];
     var secs = arr[2];
     return parseInt((hours*60*60)+(mins*60)+secs);
 }
 
-function fromSecs(bigger){
+//TODO refactor this into something sane
+function formatSeconds(bigger){
     var minsecs = bigger%3600;
     var hours = checkTime((bigger-minsecs)/3600);
     var secs = checkTime(minsecs%60);
@@ -97,3 +115,10 @@ $(document).ready(function () {
 	        local: ['United States of America', 'Democratic Peoples Republic of Korea', 'Mali']
 	    });
 	});
+
+//Event Listener
+document.getElementById("namebox").addEventListener("keydown", function(e) {
+    if (!e) { var e = window.event; }
+    // Enter is pressed
+    if (e.keyCode == 13) { addSpeaker(); }
+}, false);
