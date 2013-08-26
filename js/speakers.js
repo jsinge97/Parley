@@ -1,5 +1,6 @@
 var timer = document.getElementById("time");
 
+//TODO kill this
 var options = {
     item: '<li><hr class="separator" /><h4 class="name"></h4><p class="id"></p></li>'
 };
@@ -38,6 +39,7 @@ function nextId() {
     return currentID;
 }
 
+//This entire timer is a hack, gonna fix it
 function setTimer() {
     if(!timerStarted) {
         var textbox = document.getElementById("timebox");
@@ -81,6 +83,8 @@ function recurseTime() {
         var foo = setTimeout(function(){recurseTime()},1000);
 }
 
+//Just want to say, please don't string me up for rolling my own time format.
+//I know how bad it is
 //format is hh:mm:ss
 function textToSeconds(textString){
     var arr=textString.split(":");
