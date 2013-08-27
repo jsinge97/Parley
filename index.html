@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/scrofulous.css">
 
 </head>
-<body>
+<body onload="init()">
 
 <div class="container">
   <div class="sixteen columns">
@@ -35,11 +35,11 @@
     <button  id="add" onClick="sendName()">Add</button>
   </div>
   <div class="two-thirds column">
-    <button id="timer" class="full-width button" onClick="toggleTimer()">0:00:00</button>
+    <button id="time" class="full-width button" onClick="toggleTimer()">0:00:00</button>
     <input id="timebox" type="text" onSubmit="setTimer()" placeholder="Time in Seconds" />
+    <button  id="set" onClick="setTimer()">Set</button>
   </div>
 </div>
-<!-- container --> 
 <script src="js/jquery-2.0.2.min.js"></script> 
 <script src="js/list.min.js"></script> 
 <script src="js/typeahead.min.js"></script> 

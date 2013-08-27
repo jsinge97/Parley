@@ -10,19 +10,21 @@ var values = [{id:0,name:'Oh God how did this get here'},
 var speakersList = new List('speakers-list', options, values);
 var currentID = 1;
 var defaultTime=30;
+var timerPosition=0; //number of seconds the timer should display
+var timeLeft=0; //number of seconds the timer should run, resets to this value after timeout
+var timereg=/\d\d:\d\d:\d\d/
 
-$(document).ready(function () {
-	    $('input').typeahead({
-	        name: 'countries',
-	        local: ['United States of America', 'Democratic Peoples Republic of Korea', 'Mali']
-	    });
-	});
+function init() {
+	$('input').typeahead({name: 'countries', local: ['United States of America', 'Democratic Peoples Republic of Korea', 'Mali']});
+    alert("we made it!");
+}
 
 function addSpeaker() {
-    var sent = $('namebox').value;
+    var input = document.getElementById("namebox");
+    var sent = input.value;
     //I needed an array, so I hacked one in
-    speakersList.add({id: nextId(),name: sent});
-    textbox.value='';
+    speakersList.add({id: nextId(), name: sent});
+    input.value='';
 }
 
 function removeNextSpeaker() {
@@ -42,8 +44,17 @@ function nextId() {
     return currentID;
 }
 
-//This entire timer is a hack, gonna fix it
+//Has to be able to accept "30" as 30 seconds and "1:30" as 90 seconds
 function setTimer() {
+    stopTimer();
+    var input = $("#timebox").val();
+    //TODO add real time validation
+    var matches = timereg.exec(input);
+    console.log(matches);
+    if(matches)
+        var enteredTime = moment(moment[0], "hh:mm:ss");
+    var timer = document.getElementById("namebox");
+    timer.value = enteredTime
 }
 
 function toggleTimer() {
@@ -57,10 +68,18 @@ function stopTimer() {
 }
 
 //Event Listener
-$(document).getElementById("namebox").addEventListener(
+document.getElementById("namebox").addEventListener(
         "keydown",
         function(e) {
     if (!e) { var e = window.event; }
     // Enter is pressed
     if (e.keyCode == 13) { addSpeaker(); }
+}, false);
+
+document.getElementById("timebox").addEventListener(
+        "keydown",
+        function(e) {
+    if (!e) { var e = window.event; }
+    // Enter is pressed
+    if (e.keyCode == 13) { setTimer(); }
 }, false);
