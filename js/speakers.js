@@ -49,12 +49,11 @@ function setTimer() {
     stopTimer();
     var input = $("#timebox").val();
     //TODO add real time validation
-    var matches = timereg.exec(input);
-    console.log(matches);
-    if(matches)
-        var enteredTime = moment(moment[0], "hh:mm:ss");
-    var timer = document.getElementById("namebox");
-    timer.value = enteredTime
+    if(input > 60)
+        timeLeft = input;
+    else
+        alert("stahp");
+
 }
 
 function toggleTimer() {
