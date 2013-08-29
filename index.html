@@ -1,27 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<meta charset="utf-8">
-<title>MUNSA Room Manager</title>
-<meta name="description" content="">
-<meta name="author" content="Javier Maldonado">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="utf-8"> <title>MUNSA Room Manager</title> <meta name="description" content=""> <meta name="author" content="Javier Maldonado"> <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/skeleton.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/scrofulous.css">
+<script src="js/jquery-2.0.2.min.js"></script> 
+<script src="js/list.min.js"></script> 
+<script src="js/typeahead.min.js"></script> 
+<script src="js/parley.js"></script>
 
 </head>
 <body onload="init()">
 
 <div class="container">
   <div class="sixteen columns">
-    <h1>Scrofulous Watcher</h1>
+    <h1>PARLEY</h1>
     <h3>MUNSA XVIII</h3>
-    <h5>Version 0.1 alpha</h5>
     <hr />
   </div>
   <div class="one-third column">
@@ -32,7 +26,7 @@
       <hr />
     </div>
     <input id="namebox" class"typeahead" type="text" onSubmit="sendName()"  placeholder="Country Name" />
-    <button  id="add" onClick="sendName()">Add</button>
+    <button  id="add" onClick="addSpeaker()">Add</button>
   </div>
   <div class="two-thirds column">
     <button id="time" class="full-width button" onClick="toggleTimer()">0:00:00</button>
@@ -40,9 +34,5 @@
     <button  id="set" onClick="setTimer()">Set</button>
   </div>
 </div>
-<script src="js/jquery-2.0.2.min.js"></script> 
-<script src="js/list.min.js"></script> 
-<script src="js/typeahead.min.js"></script> 
-<script src="js/speakers.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
-# The MUNSA Scrofulous Watcher #
+# MUNSA Parley#
 ### A simple, web based solution to chairing a room ###
 
-The Scrofulous Watcher is a javascript webpage using styling from [Skeleton](http://www.getskeleton.com/) and autocomplete from [Typeahead](http://twitter.github.io/typeahead.js/).  Feel free to use this in other conferences, as long as attribution is given.
+Parley is a javascript webapp using styling from [Skeleton](http://www.getskeleton.com/) and autocomplete from [Typeahead](http://twitter.github.io/typeahead.js/).  Feel free to use this in other conferences, as long as attribution is given.
 
 Get Started
 -----------

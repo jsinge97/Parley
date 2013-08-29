@@ -1,4 +1,7 @@
 
+
+function init() {
+
 //TODO kill this
 var options = {
     item: '<li><hr class="separator" /><h4 class="name"></h4><p class="id"></p></li>'
@@ -12,11 +15,25 @@ var currentID = 1;
 var defaultTime=30;
 var timerPosition=0; //number of seconds the timer should display
 var timeLeft=0; //number of seconds the timer should run, resets to this value after timeout
-var timereg=^(([0-5])?\d:)?\d\d\s*$ //i had a problem, so I used a regex. now it's the next guy's problem
+var timereg=/^(([0-5])?\d:)?\d\d\s*$/ //i had a problem, so I used a regex. now it's the next guy's problem
 
-function init() {
-	$('input').typeahead({name: 'countries', local: ['United States of America', 'Democratic Peoples Republic of Korea', 'Mali']});
-    alert("we made it!");
+	$('.namebox').typeahead({name: 'countries', local: ['United States of America', 'Democratic Peoples Republic of Korea', 'Mali']});
+//Event Listener
+document.getElementById("namebox").addEventListener(
+        "keydown",
+        function(e) {
+    if (!e) { var e = window.event; }
+    // Enter is pressed
+    if (e.keyCode == 13) { addSpeaker(); }
+}, false);
+
+document.getElementById("timebox").addEventListener(
+        "keydown",
+        function(e) {
+    if (!e) { var e = window.event; }
+    // Enter is pressed
+    if (e.keyCode == 13) { setTimer(); }
+}, false);
 }
 
 function addSpeaker() {
@@ -44,14 +61,9 @@ function nextId() {
     return currentID;
 }
 
-var start = new Date().getTime(), elapsed = '0.0' ticking = false;
-
-window.setInterval(function()
-        {
-            var time = new Date().getTime() - start;
-            elapsed = Math.floor(time / 100) / 10;
-            if(Math.round(elapsed) == elapsed) { elapsed += '.0'; }
-        }, 100);
+var start = new Date().getTime();
+var elapsed = '0.0';
+var ticking = false;
 
 //Has to be able to accept "30" as 30 seconds and "1:30" as 90 seconds
 function setTimer() {
@@ -61,6 +73,8 @@ function setTimer() {
         timeLeft = input;
     else
         alert("stahp"); //add a visual bell
+    console.log("timeLeft: " + timeLeft);
+    //change timer text here
 }
 
 function toggleTimer() {
@@ -71,32 +85,26 @@ function toggleTimer() {
 }
 
 function startTimer() {
-    ticking = true;
-    var begin = elapsed;
-    console.log(begin);
-    while(begin != (begin+timeLeft))
-    {
-       $( 
-    }
+    var foo = timeLeft;
+    window.ticker = window.setInterval(function () {
+        if(foo > 0) {
+            foo = foo - 1;
+            console.log(foo);
+            //decrement the visual timer
+        }
+        else {
+            endTimer();
+        }
+    },1000);
 }
 
 function stopTimer() {
-    ticking = false;
 }
 
-//Event Listener
-document.getElementById("namebox").addEventListener(
-        "keydown",
-        function(e) {
-    if (!e) { var e = window.event; }
-    // Enter is pressed
-    if (e.keyCode == 13) { addSpeaker(); }
-}, false);
+function endTimer() {
+    clearInterval(ticker);
+    //flash the button
+    //set the button to zero
+}
 
-document.getElementById("timebox").addEventListener(
-        "keydown",
-        function(e) {
-    if (!e) { var e = window.event; }
-    // Enter is pressed
-    if (e.keyCode == 13) { setTimer(); }
-}, false);
+
