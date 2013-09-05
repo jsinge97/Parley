@@ -68,9 +68,14 @@ input{
 .tt-suggestion p {
   margin: 0;
 }
-#add {
+.inline {
 	vertical-align:top;
 }
 #time {
 	font-size:72px;
+}
+#timebox {
+    float: left;
+    margin-right: 3px;
+    margin-top: 2px;
 }

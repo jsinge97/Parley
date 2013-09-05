@@ -1,5 +1,6 @@
 /*global List:true */
 /*jshint devel:true*/
+
 //TODO kill this
 var options = {
     item: '<li><hr class="separator" /><h4 class="name"></h4><p class="id"></p></li>'
@@ -90,6 +91,7 @@ function startTimer() {
             timerPosition = timerPosition - 1;
             console.log(timerPosition);
             //decrement the visual timer
+            $("#time").html(formatSeconds(timerPosition));
         }
         else {
             endTimer();
