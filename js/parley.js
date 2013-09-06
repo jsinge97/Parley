@@ -18,7 +18,7 @@ var timereg=/^(([0-5])?\d:)?\d\d\s*$/; //i had a problem, so I used a regex. now
 $(document).ready(function () {
     $('#namebox').typeahead({
         name: 'countries',
-        local: ['United States of America', 'Democratic Peoples Republic of Korea', 'Mali']
+        local: ['United States of America', 'Democratic Peoples Republic of Korea', 'Mali', 'Malawi', 'Afghanistan', 'Benin', 'Burundi', 'Benin', 'Burundi', 'Comoros', 'Ivory Coast', 'Egypt', 'Democratic Republic of Congo', 'Ethiopia]
     });
 });
 
