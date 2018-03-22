@@ -22,8 +22,8 @@ $(document).ready(function () {
 });
 
 function nextId() {
-    currentID = currentID + 1;
-    return currentID;
+    currentID += 1;
+    return currentID - 1;
 }
 
 function addSpeaker() {
